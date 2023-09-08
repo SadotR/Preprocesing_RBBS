@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH -p cicese
+#SBATCH --job-name=fastqc
+#SBATCH --output=fastqc-%j.log
+#SBATCH --error=fastqc-%j.err
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=8
+#SBATCH -t 6-00:00:00
+
+
+export PATH=$PATH:/LUSTRE/apps/bioinformatica/FastQC_v0.11.7/:$PATH
+
+module load gcc-7.2.0
+
+fastqc ../secuencias/*.fastq -t 8 -o ./
